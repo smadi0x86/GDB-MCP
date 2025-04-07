@@ -1,5 +1,7 @@
 # GDB MCP Server
 
+https://github.com/user-attachments/assets/1bac46ee-4054-432d-95b8-660c9062d863
+
 An MCP server written in MCP python SDK that enables LLMs to interact with GDB for program debugging and analysis. This tool allows LLMs to perform complex debugging tasks through a generative AI interface.
 
 ## Features
