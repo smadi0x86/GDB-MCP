@@ -21,9 +21,9 @@ from .commands import (
     gdb_finish,
     gdb_backtrace,
     gdb_print,
-    gdb_disassemble,
+    # gdb_disassemble,
     gdb_info_registers,
-    gdb_info_functions,
+    # gdb_info_functions,
     gdb_list_sessions,
     gdb_terminate
 )

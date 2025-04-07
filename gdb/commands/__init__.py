@@ -216,6 +216,17 @@ def gdb_print(session_id: str, expression: str) -> Dict:
 # or disassembly. This needs to be fixed by properly parsing the MI output format and handling
 # the program state correctly.
 
+def gdb_info_registers(session_id: str, register: Optional[str] = None) -> Dict:
+    """
+    Display registers.
+    """
+    try:
+        command = f"info registers {register}" if register else "info registers"
+        output = exec_gdb_command(session_id, command)
+        return {"output": f"Register info{f' for {register}' if register else ''}:\n\n{output}"}
+    except Exception as e:
+        return {"error": str(e)}
+
 def gdb_list_sessions() -> Dict:
     """
     List all active GDB sessions.
