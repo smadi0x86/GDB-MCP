@@ -1,0 +1,6 @@
+{
+  "gdb": {
+    "command": "python3",
+    "args": ["/home/smadi0x86wsl/dev/personal/gdb-mcp/gdb-mcp.py"]
+  }
+}

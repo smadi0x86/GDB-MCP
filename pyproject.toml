@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "gdb-mcp"
+version = "0.1.0"
+description = ""
+authors = ["smadi0x86 <smadixd@gmail.com>"]
+license = "GNU v3"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+mcp = {extras = ["cli"], version = "^1.6.0"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
