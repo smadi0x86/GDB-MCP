@@ -210,61 +210,11 @@ def gdb_print(session_id: str, expression: str) -> Dict:
         return {"error": str(e)}
 
 
-def gdb_disassemble(
-    session_id: str,
-    location: Optional[str] = None,
-    start: Optional[str] = None,
-    end: Optional[str] = None,
-    count: Optional[int] = None
-) -> Dict:
-    """
-    Disassemble program code.
-    """
-    try:
-        # Build the command
-        command = "disassemble"
-        if location:
-            command += f" {location}"
-        elif start:
-            command += f" {start}"
-            if end:
-                command += f",{end}"
-            elif count:
-                command += f",+{count}"
-
-        output = exec_gdb_command(session_id, command)
-        return {
-            "output": f"Disassembly{f' of {location}' if location else ''}{f' from {start}' if start else ''}{f' to {end}' if end else ''}{f' ({count} instructions)' if count else ''}:\n\n{output}"
-        }
-    except Exception as e:
-        return {"error": str(e)}
-
-
-def gdb_info_registers(session_id: str, register: Optional[str] = None) -> Dict:
-    """
-    Display registers.
-    """
-    try:
-        command = f"info registers {register}" if register else "info registers"
-        output = exec_gdb_command(session_id, command)
-        return {"output": f"Register info{f' for {register}' if register else ''}:\n\n{output}"}
-    except Exception as e:
-        return {"error": str(e)}
-
-
-def gdb_info_functions(session_id: str, pattern: Optional[str] = None) -> Dict:
-    """
-    List all functions in the program, optionally filtered by a pattern.
-    """
-    try:
-        command = "info functions"
-        if pattern:
-            command += f" {pattern}"
-        output = exec_gdb_command(session_id, command)
-        return {"output": f"Functions in program{f' matching {pattern}' if pattern else ''}:\n\n{output}"}
-    except Exception as e:
-        return {"error": str(e)}
-
+# NOTE: info functions and disassemble commands are temporarily disabled due to GDB MI output parsing issues.
+# The current implementation fails to properly handle the GDB Machine Interface output format,
+# resulting in either empty output or program execution messages instead of the expected function list
+# or disassembly. This needs to be fixed by properly parsing the MI output format and handling
+# the program state correctly.
 
 def gdb_list_sessions() -> Dict:
     """

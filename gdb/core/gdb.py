@@ -14,7 +14,7 @@ def start_gdb(gdb_path: str, working_dir: Optional[str]) -> Tuple[str, str]:
     """
     session_id = str(uuid.uuid4())
     process = subprocess.Popen(
-        [gdb_path, "--interpreter=mi"],
+        [gdb_path, "--interpreter=mi", "-q"],
         stdin=subprocess.PIPE,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
@@ -35,8 +35,20 @@ def start_gdb(gdb_path: str, working_dir: Optional[str]) -> Tuple[str, str]:
         if "(gdb)" in line:
             break
 
+    # Create session first
     session = GdbSession(process, working_dir=working_dir, id=session_id)
     active_sessions[session_id] = session
+
+    # Now we can safely execute commands
+    if process.stdin is not None:
+        process.stdin.write("set debuginfod enabled off\n")
+        process.stdin.flush()
+        # Read the response
+        while True:
+            line = process.stdout.readline()
+            if not line or "(gdb)" in line:
+                break
+
     return session_id, "".join(output)
 
 

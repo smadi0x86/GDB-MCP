@@ -26,6 +26,13 @@ An MCP server written in MCP python SDK that enables LLMs to interact with GDB f
   - Core dump analysis
   - Symbol inspection
 
+> **Note**: The `info functions` and `disassemble` commands are temporarily disabled due to GDB Machine Interface (MI) output parsing issues. These features will be restored in a future update once the output parsing is properly implemented.
+
+## Project Status
+
+- For known issues and current bugs, see [BUGS.md](BUGS.md)
+- For planned improvements and features, see [TODO.md](TODO.md)
+
 ## Tools Available
 
 ```js
