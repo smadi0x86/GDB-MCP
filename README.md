@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/smadi0x86-mdb-mcp-badge.png)](https://mseep.ai/app/smadi0x86-mdb-mcp)
+
 # Multi-Debugger MCP Server (LLDB and GDB)
 
 A Model Context Protocol server that provides debugging functionality for both GDB and LLDB debuggers, for use with Claude Desktop, VSCode Copilot, or other AI assistants.
